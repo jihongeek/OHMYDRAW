@@ -1,3 +1,5 @@
+import './SettingCount.css'
+
 const SettingCount = () => {
     return (
         <div className = "SettingCount">
@@ -7,7 +9,7 @@ const SettingCount = () => {
                 <div className="participant_wrapper">
                     <p className="participant_label" >참가인원</p>
                     <input type="number"></input>
-                    <p className="paticipant_error_label" style = {{display : "none"}}></p>
+                    <p className="participant_error_label" style = {{display:"none"}}></p>
                 </div>
                 <div className="winner_wrapper">
                     <p className="winner_label"  >당첨자</p>
