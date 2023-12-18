@@ -1,0 +1,64 @@
+.Draw {
+    margin: 0 auto;
+    padding-block: 20px;
+    max-width: 690px;
+    height: 761px;
+}
+.winner_name {
+    font-size: 96px;
+    font-weight: bold;
+    margin-block: 42px;
+}
+.win_label {
+    font-size: 32px;
+    font-weight: bold;
+    margin-block: 42px;
+}
+.winner_wrapper {
+    margin-block: 150px;
+}
+
+.button_wrapper {
+    margin-top : 8px;
+    margin-bottom: 8px;
+}
+.send_gift_response_label {
+    font-size: 36px;
+    font-weight: normal;
+    margin-block: 0px;
+}
+.send_gift_button{
+    width: 203px;
+    height: 72px;
+    background-color: #47EA6B;
+    color : white;
+    border-style: none;
+    font-size: 32px;
+    font-weight: bold;
+} 
+.send_gift_button:active {
+   background-color: rgb(0, 186, 40); 
+}
+.send_gift_button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+ 
+}
+.redraw_button{
+    width: 203px;
+    height: 72px;
+    background-color: #E63535;
+    color : white;
+    border-style: none;
+    font-size: 32px;
+    font-weight: bold;
+    margin-right : 5px;
+} 
+.redraw_button:active {
+   background-color: #992424; 
+} 
+.redraw_button:hover {
+    cursor: pointer;
+    text-decoration: underline;
+ 
+}
