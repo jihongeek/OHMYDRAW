@@ -1,6 +1,9 @@
 import './SettingCount.css'
 
-const SettingCount = () => {
+const SettingCount = ({moveToNextStep}) => {
+    const onClickNextButton = () => {
+        moveToNextStep();
+    }
     return (
         <div className = "SettingCount">
             <p className="setting_label">추첨설정</p>
@@ -18,7 +21,7 @@ const SettingCount = () => {
                 </div>
             </div>
             <div className ="button_wrapper">
-                <button className ="next_button">다음</button>
+                <button className ="next_button" onClick={onClickNextButton}>다음</button>
             </div>
         </div>
     );
