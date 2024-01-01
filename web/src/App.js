@@ -24,7 +24,11 @@ function App() {
       <h1 className="main_label">행운의 추첨</h1>
       {
         {
-          0 : <SettingCount moveToNextStep={moveToNextStep}/>,
+          0 : <SettingCount 
+                moveToNextStep={moveToNextStep}
+                drawData={drawData}
+                setDrawData={setDrawData}
+              />,
           1 : <SettingParticipant moveToNextStep={moveToNextStep} moveToPreviousStep={moveToPreviousStep} />,
           2 : <SettingGift moveToPreviousStep={moveToPreviousStep}/>,
           3 : <Draw/>
