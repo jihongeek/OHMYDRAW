@@ -1,8 +1,56 @@
 import './SettingCount.css'
-
-const SettingCount = ({moveToNextStep}) => {
+import { useState } from 'react'; 
+const SettingCount = ({moveToNextStep,drawData,setDrawData}) => {
+    const [nowParticipantCount,setParticipantCount] = useState(drawData.participantCount);
+    const [nowWinnerCount,setWinnerCount] = useState(drawData.winnerCount);
+    const participantErrorMessages = {
+        "out_of_range" : "참가자 수는 1 ~ 10명 사이 이어야 합니다.",
+    }
+    const winnerErrorMessages = {
+        "out_of_range" : "당첨자 수는 1명 보다 많고, 참가자 수 보다 같거나 작아야 합니다."
+    }
+    const [participantErrorStatus,setParticipantErrorStatus] = useState("none");
+    const [winnerErrorStatus,setWinnerErrorStatus] = useState("none");
     const onClickNextButton = () => {
+        // 참가자 수, 당첨자 수가 범위를 벗어날 경우
+        if ( !(0 < nowParticipantCount && nowParticipantCount <= 10) )
+        {
+            setParticipantErrorStatus("out_of_range");
+            return;
+        } 
+        setParticipantErrorStatus("none");
+        if ( !(0 < nowWinnerCount && nowWinnerCount <= nowParticipantCount) )
+        {
+            setWinnerErrorStatus("out_of_range")
+            return;
+        }
+        setWinnerErrorStatus("none");
+        setDrawData({
+            ...drawData,
+            participantCount : nowParticipantCount,
+            winnerCount : nowWinnerCount
+        });
         moveToNextStep();
+    }
+    const onParticipantCountChange = (e) => {
+        if (isNaN(parseInt(e.target.value)))
+        {
+            setParticipantCount(0);
+        }
+        else 
+        {
+            setParticipantCount(parseInt(e.target.value));
+        }
+    }
+    const onWinnerCountChange = (e) => {
+        if (isNaN(parseInt(e.target.value)))
+        {
+            setWinnerCount(0);
+        }
+        else 
+        {
+            setWinnerCount(parseInt(e.target.value));
+        }
     }
     return (
         <div className = "SettingCount">
@@ -11,13 +59,13 @@ const SettingCount = ({moveToNextStep}) => {
             <div className="form_wrapper">
                 <div className="participant_wrapper">
                     <p className="participant_label" >참가인원</p>
-                    <input type="number"></input>
-                    <p className="participant_error_label" style = {{display:"none"}}></p>
+                    <input type="number" defaultValue={nowParticipantCount} onChange={onParticipantCountChange} style={{borderColor :  participantErrorStatus !== "none"? "#E63535": ''}}></input>
+                    { participantErrorStatus !== "none" && <p className="participant_error_label">{participantErrorMessages[participantErrorStatus]}</p> }
                 </div>
                 <div className="winner_wrapper">
                     <p className="winner_label"  >당첨자</p>
-                    <input type="number"></input>
-                    <p className="winner_error_label" style = {{display : "none"}}></p>
+                    <input type="number" defaultValue={nowWinnerCount} onChange={onWinnerCountChange} style={{borderColor :  winnerErrorStatus !== "none"? "#E63535": ''}}></input>
+                    { winnerErrorStatus !== "none" && <p className="winner_error_label">{winnerErrorMessages[winnerErrorStatus]}</p> }
                 </div>
             </div>
             <div className ="button_wrapper">
