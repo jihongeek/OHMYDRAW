@@ -1,4 +1,4 @@
-import './SettingCount.css'
+import './SettingCount.css';
 import { useState } from 'react'; 
 const SettingCount = ({moveToNextStep,drawData,setDrawData}) => {
     const [nowParticipantCount,setParticipantCount] = useState(drawData.participantCount);
@@ -57,12 +57,12 @@ const SettingCount = ({moveToNextStep,drawData,setDrawData}) => {
             <p className="setting_label">추첨설정</p>
             <p className="step_label">인원 정하기</p>
             <div className="form_wrapper">
-                <div className="participant_wrapper">
+                <div className="participant_count_wrapper">
                     <p className="participant_label" >참가인원</p>
                     <input type="number" defaultValue={nowParticipantCount} onChange={onParticipantCountChange} style={{borderColor :  participantErrorStatus !== "none"? "#E63535": ''}}></input>
                     { participantErrorStatus !== "none" && <p className="participant_error_label">{participantErrorMessages[participantErrorStatus]}</p> }
                 </div>
-                <div className="winner_wrapper">
+                <div className="winner_count_wrapper">
                     <p className="winner_label"  >당첨자</p>
                     <input type="number" defaultValue={nowWinnerCount} onChange={onWinnerCountChange} style={{borderColor :  winnerErrorStatus !== "none"? "#E63535": ''}}></input>
                     { winnerErrorStatus !== "none" && <p className="winner_error_label">{winnerErrorMessages[winnerErrorStatus]}</p> }
