@@ -27,12 +27,12 @@
 }
 .winner_error_label{
     margin : 0px;
-    font-size: 14px;
+    font-size: 16px;
     color :#E63535;
 }
 .participant_error_label{
     margin : 0px;
-    font-size: 14px;
+    font-size: 16px;
     color :#E63535; 
 }
 .button_wrapper {
