@@ -1,8 +1,11 @@
 import './SettingGift.css'
 import GiftForm from "./GiftForm"
+import { useState } from 'react'
 
-const SettingGift = ({moveToPreviousStep}) => {
-    const mockProps = [undefined,undefined];
+const SettingGift = ({moveToPreviousStep,drawData}) => {
+    const [giftDataArray,setGiftDataArray] = useState([...Array(drawData.winnerCount)].map(
+        (_,index) => { return { id : index, giftName : "", giftFile : ""} }
+    ));
     const onClickPreviousButton = () => {
         moveToPreviousStep();
     }
@@ -12,8 +15,8 @@ const SettingGift = ({moveToPreviousStep}) => {
             <p className="step_label">경품 정하기</p>
             <div className = "form_wrapper">
                 {
-                    mockProps.map( () => {
-                        return <GiftForm/>
+                    giftDataArray.map( (giftData,index) => {
+                        return <GiftForm key={index}/>
                     })
                 }
             </div>
