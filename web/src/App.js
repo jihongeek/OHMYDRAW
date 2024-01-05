@@ -32,7 +32,8 @@ function App() {
           1 : <SettingParticipant 
                 moveToNextStep={moveToNextStep} 
                 moveToPreviousStep={moveToPreviousStep}
-                drawData={drawData} 
+                drawData={drawData}
+                setDrawData={setDrawData} 
               />,
           2 : <SettingGift moveToPreviousStep={moveToPreviousStep}/>,
           3 : <Draw/>
