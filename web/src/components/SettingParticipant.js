@@ -2,11 +2,16 @@ import ParticipantForm from "./ParticipantForm";
 import './SettingParticipant.css';
 import {useState} from 'react';
 
-const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData}) => {
+const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData,setDrawData}) => {
     
     const formIndexArray = [...Array(drawData.participantCount)].map((x,index) => index);
-    const [errorDataArray,setErrorData] = useState(formIndexArray.map(x => { return {nameErrorStatus : "none", emailErrorStatus : "none"} }));
-    const [participantDataArray,setParticipantData] = useState(formIndexArray.map(x => { return { name : "", email : ""} }))
+    const [errorDataArray,setErrorData] = useState(formIndexArray.map(x => { return {nameErrorStatus : "none", emailErrorStatus : "none"}}));
+    const [participantDataArray,setParticipantData] = useState(
+        formIndexArray.map(x => { 
+            if (drawData.participantArray.length > 0)
+                return drawData.participantArray[x];
+            return { name : "", email : ""};
+        }))
     const onClickNextButton = () => { 
         const nameValidationRegex = /^([a-zA-Zㄱ-ㅎ가-힣 0-9]{1,})$/;
         const emailValidationRegex = /[a-zA-Z0-9][a-zA-Z0-9_-]{0,20}@[a-zA-Z0-9]{1,}\.[a-zA-Z0-9]{1,}/
@@ -36,9 +41,15 @@ const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData}) => {
         {
             return;
         }
+        setDrawData({
+            ...drawData,
+            participantArray : participantDataArray
+        })
+
         moveToNextStep();
     }
     const onClickPreviousButton = () => {
+        setDrawData({...drawData,participantArray : []});
         moveToPreviousStep();
     }
     return (
