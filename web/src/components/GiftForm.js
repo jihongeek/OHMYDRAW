@@ -35,7 +35,12 @@ const GiftForm = ({giftDataArray,setGiftData,nowIndex}) => {
             <label htmlFor = "file">
                 <div className = "file_upload_button">파일 업로드</div>
             </label>
-            <input type = "file" id ="file" onChange={onGiftFileChange}/>
+            <input 
+                type = "file" 
+                id ="file" 
+                accept="image/png, image/jpeg"
+                onChange={onGiftFileChange}
+            />
             <p className = "gift_file_error_label" style = {{display : "none"}}></p>
         </div>
     );
