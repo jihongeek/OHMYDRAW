@@ -3,8 +3,8 @@ import GiftForm from "./GiftForm"
 import { useState } from 'react'
 
 const SettingGift = ({moveToPreviousStep,drawData}) => {
-    const [giftDataArray,setGiftDataArray] = useState([...Array(drawData.winnerCount)].map(
-        (_,index) => { return { id : index, giftName : "", giftFile : ""} }
+    const [giftDataArray,setGiftData] = useState([...Array(drawData.winnerCount)].map(
+        (_,index) => { return { id : index, giftName : "", giftFile : new File([],"파일 이름")} }
     ));
     const onClickPreviousButton = () => {
         moveToPreviousStep();
@@ -16,7 +16,12 @@ const SettingGift = ({moveToPreviousStep,drawData}) => {
             <div className = "form_wrapper">
                 {
                     giftDataArray.map( (giftData,index) => {
-                        return <GiftForm key={index}/>
+                        return <GiftForm 
+                            key={index}
+                            giftDataArray = {giftDataArray}
+                            setGiftData = {setGiftData}
+                            nowIndex = {giftData.id}
+                        />
                     })
                 }
             </div>
