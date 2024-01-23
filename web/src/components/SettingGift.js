@@ -2,7 +2,7 @@ import './SettingGift.css'
 import GiftForm from "./GiftForm"
 import { useState } from 'react'
 
-const SettingGift = ({moveToPreviousStep,drawData}) => {
+const SettingGift = ({moveToPreviousStep,drawData,setDrawData}) => {
     const [giftDataArray,setGiftData] = useState([...Array(drawData.winnerCount)].map(
         (_,index) => { return { id : index, giftName : "", giftFile : new File([],"파일 이름")} }
     ));
@@ -22,12 +22,13 @@ const SettingGift = ({moveToPreviousStep,drawData}) => {
         return true;
     }
     const onClickPreviousButton = () => {
+        setDrawData({...drawData,giftArray:[]})
         moveToPreviousStep();
     }
     const onClickDrawButton = () => {
+        let isErrorOccured = false;
         const nameValidationRegex = /^([a-zA-Zㄱ-ㅎ가-힣 0-9]{1,})$/;
         setErrorData(errorDataArray.map((errorData, index)=> {
-            let isErrorOccured = false;
             let errorDataToUpdate = {
                 nameErrorStatus : "none",
                 fileErrorStatus : "none"
@@ -59,7 +60,11 @@ const SettingGift = ({moveToPreviousStep,drawData}) => {
             return {fileErrorStatus : "none" ,nameErrorStatus : "none"}
         
         }))
-        
+        if (isErrorOccured === true)
+        {
+            return;
+        }   
+        setDrawData({...drawData,giftArray : giftDataArray})
     }
     return ( 
         <div className = "SettingGift">

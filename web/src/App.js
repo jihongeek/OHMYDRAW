@@ -38,6 +38,7 @@ function App() {
           2 : <SettingGift 
                 moveToPreviousStep={moveToPreviousStep}
                 drawData={drawData}
+                setDrawData={setDrawData}
               />,
           3 : <Draw/>
         }[stepIndex]
