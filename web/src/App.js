@@ -10,6 +10,8 @@ function App() {
   const [drawData,setDrawData] = useState({
     participantCount : 0,
     winnerCount : 0,
+    nowRound : -1,
+    nowWinnerId : -1,
     participantArray : [],
     giftArray : []
 });
@@ -18,6 +20,17 @@ function App() {
   }
   const moveToPreviousStep = () => {
     setStepIndex(stepIndex-1);  
+  }
+  const pickParticipantIndex = (participantCount) => {
+      return Math.floor(Math.random() * (participantCount - 0)) + 0
+  }
+  const doDraw = (isRedraw) => {
+    const nextRound = isRedraw === false ? drawData.nowRound + 1 : drawData.nowRound 
+    setDrawData({
+        ...drawData,
+        nowRound : nextRound,
+        nowWinnerId  : pickParticipantIndex(drawData.participantCount)
+    })
   }
   return (
     <div className="App">
@@ -37,10 +50,15 @@ function App() {
               />,
           2 : <SettingGift 
                 moveToPreviousStep={moveToPreviousStep}
+                moveToNextStep = {moveToNextStep}
                 drawData={drawData}
+                doDraw={doDraw}
                 setDrawData={setDrawData}
               />,
-          3 : <Draw/>
+          3 : <Draw
+                drawData={drawData}
+                doDraw={doDraw}
+              />
         }[stepIndex]
       }
     </div>
