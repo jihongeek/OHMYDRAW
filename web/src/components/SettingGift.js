@@ -1,13 +1,12 @@
-import './SettingGift.css'
-import GiftForm from "./GiftForm"
-import { useState } from 'react'
+import { useEffect, useState } from "react";
+import "./SettingGift.css";
+import GiftForm from "./GiftForm";
 
-const SettingGift = ({moveToPreviousStep,drawData,setDrawData}) => {
+const SettingGift = ({ moveToPreviousStep,drawData,setDrawData,doDraw,moveToNextStep }) => {
     const [giftDataArray,setGiftData] = useState([...Array(drawData.winnerCount)].map(
-        (_,index) => { return { id : index, giftName : "", giftFile : new File([],"파일 이름")} }
+        (_, index) => { return { id : index, giftName : "", giftFile : new File([],"파일 이름")} }
     ));
-    const [errorDataArray,setErrorData] = useState(giftDataArray.map(x => { return {nameErrorStatus : "none", fileErrorStatus : "none"}}));    
-    
+    const [errorDataArray,setErrorData] = useState(giftDataArray.map(() => { return {nameErrorStatus : "none", fileErrorStatus : "none"}}));    
     const maxNonNamePartLength = 4;
     const isValidImageFilename = (filename) => {
         const filenameValidationRegex = /\.JPG$|\.jpg$|\.jpeg$|\.JPEG$|\.png$|\.PNG$/
@@ -25,13 +24,14 @@ const SettingGift = ({moveToPreviousStep,drawData,setDrawData}) => {
         setDrawData({...drawData,giftArray:[]})
         moveToPreviousStep();
     }
+    
     const onClickDrawButton = () => {
         let isErrorOccured = false;
         const nameValidationRegex = /^([a-zA-Zㄱ-ㅎ가-힣 0-9]{1,})$/;
         setErrorData(errorDataArray.map((errorData, index)=> {
-            let errorDataToUpdate = {
-                nameErrorStatus : "none",
-                fileErrorStatus : "none"
+            const errorDataToUpdate = {
+                nameErrorStatus: "none",
+                fileErrorStatus: "none",
             }
             if (nameValidationRegex.test(giftDataArray[index].giftName) === false)
             {
@@ -57,15 +57,25 @@ const SettingGift = ({moveToPreviousStep,drawData,setDrawData}) => {
             {
                 return errorDataToUpdate
             }
-            return {fileErrorStatus : "none" ,nameErrorStatus : "none"}
-        
+            return { fileErrorStatus: "none" ,nameErrorStatus: "none" }
         }))
         if (isErrorOccured === true)
         {
             return;
-        }   
-        setDrawData({...drawData,giftArray : giftDataArray})
+        }
+        setDrawData({ ...drawData, giftArray: giftDataArray });
     }
+    useEffect(() => {
+        if (drawData.giftArray.length > 0)
+        {
+            doDraw(false);
+            moveToNextStep();
+        }
+    }
+        ,[drawData,doDraw,moveToNextStep]        
+    )
+
+      
     return ( 
         <div className = "SettingGift">
             <p className="setting_label">추첨설정</p>
