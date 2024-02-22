@@ -12,6 +12,7 @@ function App() {
     winnerCount : 0,
     nowRound : -1,
     nowWinnerId : -1,
+    pickedIndex : -1,
     participantArray : [],
     giftArray : []
 });
@@ -24,13 +25,21 @@ function App() {
   const pickParticipantIndex = (participantCount) => {
       return Math.floor(Math.random() * (participantCount - 0)) + 0
   }
-  const doDraw = (isRedraw) => {
+  /**
+   *당첨자 추첨 함수
+   * @param {boolean} isRedraw 
+   * @param {Array} participantCount 
+   */
+  const doDraw = (isRedraw,participantArray = drawData.participantArray) => {
     const nextRound = isRedraw === false ? drawData.nowRound + 1 : drawData.nowRound 
+    const pickedIndex = pickParticipantIndex(participantArray.length); 
     setDrawData({
         ...drawData,
         nowRound : nextRound,
-        nowWinnerId  : pickParticipantIndex(drawData.participantCount)
+        nowWinnerId  : participantArray[pickedIndex].id,
+        pickedIndex : pickedIndex
     })
+     
   }
   return (
     <div className="App">
@@ -58,6 +67,7 @@ function App() {
           3 : <Draw
                 drawData={drawData}
                 doDraw={doDraw}
+                setDrawData={setDrawData}
               />
         }[stepIndex]
       }

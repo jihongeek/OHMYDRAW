@@ -5,12 +5,12 @@ import {useState} from 'react';
 const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData,setDrawData}) => {
     
     const formIndexArray = [...Array(drawData.participantCount)].map((x,index) => index);
-    const [errorDataArray,setErrorData] = useState(formIndexArray.map(x => { return {nameErrorStatus : "none", emailErrorStatus : "none"}}));
+    const [errorDataArray,setErrorData] = useState(formIndexArray.map(() => { return {nameErrorStatus : "none", emailErrorStatus : "none"}}));
     const [participantDataArray,setParticipantData] = useState(
         formIndexArray.map(x => { 
             if (drawData.participantArray.length > 0)
                 return drawData.participantArray[x];
-            return { name : "", email : ""};
+            return { id : x, name : "", email : "", isWon : false};
         }))
     const onClickNextButton = () => { 
         const nameValidationRegex = /^([a-zA-Zㄱ-ㅎ가-힣 0-9]{1,})$/;
