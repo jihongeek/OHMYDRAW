@@ -40,12 +40,12 @@ const GiftForm = ({giftDataArray,errorData,setGiftData,nowIndex}) => {
                 style={ errorData.fileErrorStatus !== "none" ? {borderColor : "#E63535"} : null }
                 disabled
             />
-            <label htmlFor = "file">
+            <label htmlFor = {`file_${nowIndex}`}>
                 <div className = "file_upload_button">파일 업로드</div>
             </label>
             <input 
                 type = "file" 
-                id ="file" 
+                id ={`file_${nowIndex}`} 
                 accept="image/png, image/jpeg"
                 onChange={onGiftFileChange}
             />
