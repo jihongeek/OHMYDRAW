@@ -4,6 +4,8 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
     const [sendStatus,setSendStatus] = useState('ready');
     const nowParticipantArray = drawData.participantArray.filter(
         (participantData) => participantData.isWon === false);
+    const nowGiftArray = [...drawData.giftArray];
+    
     const sendStatusMessages = {
         'ready' : {text : '준비완료', color : 'inherit' },
         'sending' : {text : '하는 중', color : 'inherit' },
@@ -31,18 +33,16 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
     useEffect(()=>{
         if (sendStatus === 'success')
         {
-            const nextGiftArray = [...drawData.giftArray];
             const nextParticipantArray= drawData.participantArray.map((participantData,index)=>{
                 if (index === drawData.nowWinnerId)
                 {
-                    return {...participantData,isWon : true}
+                    return {...participantData,isWon : true};
                 }
-                return participantData
+                return participantData;
             })
-            nextGiftArray.shift() 
-            nowParticipantArray.splice(drawData.pickedIndex,1);
-            setDrawData({...drawData,giftArray : nextGiftArray});
+            nowGiftArray.shift();
             setDrawData({...drawData,participantArray : nextParticipantArray});
+            setDrawData({...drawData,giftArray : nowGiftArray});
         }
     },
     [sendStatus])
@@ -59,8 +59,8 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
             </div>
             <div className = "button_wraper">
                 {sendStatus === 'success' || (sendStatus === 'ready' && nowParticipantArray.length < 2) ? '' : <button className="redraw_button" onClick={ () => doDraw(true,nowParticipantArray) }>다시 추첨</button>}
-                {sendStatus === 'success' ? '' : <button className="send_gift_button" onClick={onClickSendGiftButton}>경품 발송</button>}
-                {sendStatus === 'success' && nowParticipantArray.length > 0 && drawData.giftArray.length > 0  ? <button className="draw_next_button" onClick={onClickDrawNextButton}>다음 추첨</button> : ''}
+                {sendStatus === 'success' || nowGiftArray.length === 0 ? '' : <button className="send_gift_button" onClick={onClickSendGiftButton}>경품 발송</button>}
+                {sendStatus === 'success' && nowParticipantArray.length > 0 && nowGiftArray.length > 0  ? <button className="draw_next_button" onClick={onClickDrawNextButton}>다음 추첨</button> : ''}
             </div>
         </div>
     );
