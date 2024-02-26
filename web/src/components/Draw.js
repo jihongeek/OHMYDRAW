@@ -41,8 +41,7 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
                 return participantData;
             })
             nowGiftArray.shift();
-            setDrawData({...drawData,participantArray : nextParticipantArray});
-            setDrawData({...drawData,giftArray : nowGiftArray});
+            setDrawData({...drawData,participantArray : nextParticipantArray, giftArray : nowGiftArray});
         }
     },
     [sendStatus])
