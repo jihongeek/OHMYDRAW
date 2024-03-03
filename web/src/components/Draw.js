@@ -5,7 +5,6 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
     const nowParticipantArray = drawData.participantArray.filter(
         (participantData) => participantData.isWon === false);
     const nowGiftArray = [...drawData.giftArray];
-    
     const sendStatusMessages = {
         'ready' : {text : '준비완료', color : 'inherit' },
         'sending' : {text : '하는 중', color : 'inherit' },
@@ -14,7 +13,16 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
     }
     const onClickSendGiftButton = ()=>{
         setSendStatus('sending');
-        fetch("sent-gifts",{method : "POST"})
+        fetch("http://localhost:3001/sent-gifts", {
+            method : "POST",
+            headers: {"Content-Type" : "application/json"},
+            body : JSON.stringify({
+                "winnerEmail" : drawData.participantArray[drawData.nowWinnerId].email,
+                "winnerName" : drawData.participantArray[drawData.nowWinnerId].name,
+                "giftName" : drawData.giftArray[0].giftName,
+                "giftFile" : drawData.giftArray[0].giftFile.name
+            })
+        })
             .then((response) => {
                 if (response.status === 201)
                 {
