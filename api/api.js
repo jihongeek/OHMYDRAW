@@ -4,7 +4,6 @@ import cors from 'cors';
 const { EMAIL_PASSWORD, EMAIL_USERNAME,EMAIL_HOST } = process.env;
 const app = express();
 const port = 3001;
-
 const senderData = {
         host : EMAIL_HOST,
         port : 465,
@@ -12,6 +11,7 @@ const senderData = {
         auth : {
             user : EMAIL_USERNAME,
             pass : EMAIL_PASSWORD 
+
     }
 }
 app.use(express.json())
@@ -22,6 +22,7 @@ app.post('/sent-gifts', (req,res) => {
         from: EMAIL_USERNAME,
         to: req.body['winnerEmail'],
         subject: `축하합니다! ${req.body['winnerName']}님 당첨되셨습니다!`,
+        attachments : [{path : req.body['giftFile']}]
     }
     if (requestToSendEmail(senderData,message))
     {

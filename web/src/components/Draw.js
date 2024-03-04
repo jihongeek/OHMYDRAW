@@ -11,8 +11,16 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
         'success' : {text : '성공', color : '#4DF472'},
         'failed' : {text : '실패', color : '#E63535'} 
     }
+    const reader = (file) =>
+    new Promise((resolve, reject) => {
+      const fr = new FileReader();
+      fr.onload = () => resolve(fr.result);
+      fr.onerror = (err) => reject(err);
+      fr.readAsDataURL(file);
+    });
     const onClickSendGiftButton = ()=>{
         setSendStatus('sending');
+        reader(drawData.giftArray[0].giftFile).then((file)=>{
         fetch("http://localhost:3001/sent-gifts", {
             method : "POST",
             headers: {"Content-Type" : "application/json"},
@@ -20,7 +28,7 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
                 "winnerEmail" : drawData.participantArray[drawData.nowWinnerId].email,
                 "winnerName" : drawData.participantArray[drawData.nowWinnerId].name,
                 "giftName" : drawData.giftArray[0].giftName,
-                "giftFile" : drawData.giftArray[0].giftFile.name
+                "giftFile" : file
             })
         })
             .then((response) => {
@@ -32,7 +40,7 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
                 {
                     setSendStatus('failed');
                 }           
-            })
+            })})
     }
     const onClickDrawNextButton = ()=>{
         setSendStatus('ready');
