@@ -4,10 +4,13 @@
   "description": "스터디, 해커톤 등 행사에 쓸 수 있는 추첨 서비스",
   "main": "index.js",
   "scripts": {
+    "web_install" : "cd web && npm install",
+    "api_install" : "cd api && npm install",
     "web" : "cd web && npm run start",
     "api" : "node api/api.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "concurrently --kill-others-on-fail \"npm run web\" \"npm run api\""
+    "start" : "concurrently --kill-others-on-fail \"npm run web\" \"npm run api\"",
+    "install" : "npm run web_install && npm run api_install" 
   },
 
   "author": "",
