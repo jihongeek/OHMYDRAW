@@ -1,43 +1,14 @@
-.email_label{
+.form_label.email, .form_label.name{
     font-weight: bold;
     margin-block : 4px;
     font-size: 20px;
-}
-.name_label{
-    font-weight: bold;
-    margin-block : 4px;
-    font-size: 20px;
-} 
-.name_error_label{
-    margin : 0px;
-    font-size: 14px;
-    color :#E63535;
-}
-.email_error_label{
-    margin : 0px;
-    font-size: 14px;
-    color :#E63535; 
-}
-input{
-    margin : 5px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #818181;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-}
-input:focus {
-    outline: none;
-    border-width: 2px;
-    border-color: rgb(31, 84, 197);
 }
 
-.name_input { 
+input[type="text"].name_input { 
     width : 112px;
     height: 32px;
 }
-.email_input { 
+input[type="text"].email_input { 
     width : 204px;
     height: 32px;
 }

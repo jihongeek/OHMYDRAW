@@ -21,18 +21,18 @@ const GiftForm = ({giftDataArray,errorData,setGiftData,nowIndex}) => {
     }
     return (
         <div className = "GiftForm">
-            <p className = "gift_name_label">경품 이름</p>
+            <p className = "form_label gift_name">경품 이름</p>
             <input 
-                className = "gift_name_input" 
+                className = "gift_name" 
                 type = "text" 
                 placeholder = "경품 이름"
                 defaultValue={giftDataArray[nowIndex].giftName}
                 onChange={onGiftNameChange}      
                 style={ errorData.nameErrorStatus !== "none" ? {borderColor : "#E63535"} : null }
             />
-            {  errorData.nameErrorStatus !== "none" && <p className = "gift_name_error_label">{errorMessages[errorData.nameErrorStatus]}</p>}
-            <p className = "gift_name_error_label" style = {{display : "none"}}></p>
-            <p className = "gift_file_label" >경품 파일</p>
+            {  errorData.nameErrorStatus !== "none" && <p className = "error_label gift_name">{errorMessages[errorData.nameErrorStatus]}</p>}
+            <p className = "form_label gift_name" style = {{display : "none"}}></p>
+            <p className = "form_label gift_file" >경품 파일</p>
             <input 
                 className= "file_name" 
                 type = "text" 
@@ -49,7 +49,7 @@ const GiftForm = ({giftDataArray,errorData,setGiftData,nowIndex}) => {
                 accept="image/png, image/jpeg"
                 onChange={onGiftFileChange}
             />
-            {  errorData.fileErrorStatus !== "none" && <p className = "gift_file_error_label">{errorMessages[errorData.fileErrorStatus]}</p>}
+            {  errorData.fileErrorStatus !== "none" && <p className = "error_label gift_file">{errorMessages[errorData.fileErrorStatus]}</p>}
         </div>
     );
 }

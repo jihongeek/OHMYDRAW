@@ -73,9 +73,9 @@ const Draw = ({drawData,doDraw,setDrawData}) => {
                 <p className = "win_label">당첨</p>
             </div>
             <div className = "button_wraper">
-                {sendStatus === 'success' || (sendStatus === 'ready' && nowParticipantArray.length < 2) ? '' : <button className="redraw_button" onClick={ () => doDraw(true,nowParticipantArray) }>다시 추첨</button>}
-                {sendStatus === 'success' || nowGiftArray.length === 0 ? '' : <button className="send_gift_button" onClick={onClickSendGiftButton}>경품 발송</button>}
-                {sendStatus === 'success' && nowParticipantArray.length > 0 && nowGiftArray.length > 0  ? <button className="draw_next_button" onClick={onClickDrawNextButton}>다음 추첨</button> : ''}
+                {sendStatus === 'success' || (sendStatus === 'ready' && nowParticipantArray.length < 2) ? '' : <button className="backward_button redraw" onClick={ () => doDraw(true,nowParticipantArray) }>다시 추첨</button>}
+                {sendStatus === 'success' || nowGiftArray.length === 0 ? '' : <button className="forward_button send_gift" onClick={onClickSendGiftButton}>경품 발송</button>}
+                {sendStatus === 'success' && nowParticipantArray.length > 0 && nowGiftArray.length > 0  ? <button className="forward_button draw_next" onClick={onClickDrawNextButton}>다음 추첨</button> : ''}
             </div>
         </div>
     );

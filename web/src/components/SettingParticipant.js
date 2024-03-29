@@ -69,8 +69,8 @@ const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData,setDrawDa
                 }
             </div>
             <div className ="button_wrapper">
-                <button className = "previous_button" onClick = {onClickPreviousButton}>이전</button>
-                <button className = "next_button" onClick = {onClickNextButton}>다음</button>
+                <button className = "backward_button previous" onClick = {onClickPreviousButton}>이전</button>
+                <button className = "forward_button next" onClick = {onClickNextButton}>다음</button>
             </div>
         </div>
     );

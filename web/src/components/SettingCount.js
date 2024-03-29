@@ -58,18 +58,18 @@ const SettingCount = ({moveToNextStep,drawData,setDrawData}) => {
             <p className="step_label">인원 정하기</p>
             <div className="form_wrapper">
                 <div className="participant_count_wrapper">
-                    <p className="participant_label" >참가인원</p>
+                    <p className="form_label participant" >참가인원</p>
                     <input type="number" defaultValue={nowParticipantCount} onChange={onParticipantCountChange} style={{borderColor :  participantErrorStatus !== "none"? "#E63535": ''}}></input>
-                    { participantErrorStatus !== "none" && <p className="participant_error_label">{participantErrorMessages[participantErrorStatus]}</p> }
+                    { participantErrorStatus !== "none" && <p className="error_label name">{participantErrorMessages[participantErrorStatus]}</p> }
                 </div>
                 <div className="winner_count_wrapper">
-                    <p className="winner_label"  >당첨자</p>
+                    <p className="form_label winner"  >당첨자</p>
                     <input type="number" defaultValue={nowWinnerCount} onChange={onWinnerCountChange} style={{borderColor :  winnerErrorStatus !== "none"? "#E63535": ''}}></input>
-                    { winnerErrorStatus !== "none" && <p className="winner_error_label">{winnerErrorMessages[winnerErrorStatus]}</p> }
+                    { winnerErrorStatus !== "none" && <p className="error_label winner">{winnerErrorMessages[winnerErrorStatus]}</p> }
                 </div>
             </div>
             <div className ="button_wrapper">
-                <button className ="next_button" onClick={onClickNextButton}>다음</button>
+                <button className ="forward_button next" onClick={onClickNextButton}>다음</button>
             </div>
         </div>
     );

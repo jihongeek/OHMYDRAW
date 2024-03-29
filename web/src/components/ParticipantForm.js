@@ -20,7 +20,7 @@ const ParticipantForm = ({nowIndex,errorData,setParticipantData,participantDataA
     }
     return (
         <div className = "ParticipantForm">
-            <p className = "name_label">이름</p>
+            <p className = "form_label name">이름</p>
             <input 
                 className = "name_input" 
                 type = "text" 
@@ -29,8 +29,8 @@ const ParticipantForm = ({nowIndex,errorData,setParticipantData,participantDataA
                 onChange={onNameInputChange}
                 style={ errorData.nameErrorStatus !== "none" ? {borderColor : "#E63535"} : null }
             />
-            {  errorData.nameErrorStatus !== "none" && <p className = "name_error_label">{errorMessages[errorData.nameErrorStatus]}</p>}
-            <p className = "email_label">이메일</p>
+            {  errorData.nameErrorStatus !== "none" && <p className = "error_label name">{errorMessages[errorData.nameErrorStatus]}</p>}
+            <p className = "form_label email">이메일</p>
             <input 
                 className = "email_input" 
                 type = "text" 
@@ -39,7 +39,7 @@ const ParticipantForm = ({nowIndex,errorData,setParticipantData,participantDataA
                 onChange={onEmailInputChange}
                 style={ errorData.emailErrorStatus !== "none" ? {borderColor : "#E63535"} : null }
             />  
-            {  errorData.emailErrorStatus !== "none" && <p className = "email_error_label">{errorMessages[errorData.emailErrorStatus]}</p>}
+            {  errorData.emailErrorStatus !== "none" && <p className = "error_label email">{errorMessages[errorData.emailErrorStatus]}</p>}
         </div>
     );
 }
