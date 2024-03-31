@@ -29,7 +29,7 @@ app.post('/sent-gifts', (req,res) => {
         from: EMAIL_USERNAME,
         to: req.body['winnerEmail'],
         subject: `축하합니다! ${req.body['winnerName']}님 당첨되셨습니다!`,
-        attachments : [{path : req.body['giftFile']}]
+        attachments : [{filename: req.body['giftName'], path : req.body['giftFile']}]
     }
     requestToSendEmail(senderData,message).then(()=>{
         res.status(201).send();
