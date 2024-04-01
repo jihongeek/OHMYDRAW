@@ -3,7 +3,7 @@ import SettingCount from './components/SettingCount';
 import SettingParticipant from './components/SettingParticipant';
 import SettingGift from './components/SettingGift'
 import Draw from './components/Draw'
-
+import logo from './img/logo.svg'
 import {useState} from 'react'
 function App() {
   const [stepIndex,setStepIndex] = useState(0);
@@ -43,7 +43,7 @@ function App() {
   }
   return (
     <div className="App">
-      <h1 className="main_label">행운의 추첨</h1>
+      <img src={logo} height="241px" width="468px" alt = "오마이드로우 로고"/>
       {
         {
           0 : <SettingCount 
