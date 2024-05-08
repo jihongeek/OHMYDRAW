@@ -77,7 +77,7 @@ const SettingGift = ({ moveToPreviousStep,drawData,setDrawData,doDraw,moveToNext
 
       
     return ( 
-        <div className = "SettingGift">
+        <div className = "setting_block SettingGift">
             <p className="setting_label">추첨설정</p>
             <p className="step_label">경품 정하기</p>
             <div className = "form_wrapper">

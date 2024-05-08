@@ -53,7 +53,7 @@ const SettingCount = ({moveToNextStep,drawData,setDrawData}) => {
         }
     }
     return (
-        <div className = "SettingCount">
+        <div className = "setting_block SettingCount">
             <p className="setting_label">추첨설정</p>
             <p className="step_label">인원 정하기</p>
             <div className="form_wrapper">
