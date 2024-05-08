@@ -20,11 +20,13 @@ const ParticipantForm = ({nowIndex,errorData,setParticipantData,participantDataA
     }
     return (
         <div className = "ParticipantForm">
-            <p className = "form_label name">이름</p>
+            <div className="form_start">
+                <p className = "form_label name">이름</p>
+                <p className="form_indicator">참가자 {nowIndex+1}</p>
+            </div>
             <input 
                 className = "name_input" 
                 type = "text" 
-                placeholder = "이름" 
                 defaultValue={participantDataArray[nowIndex].name}
                 onChange={onNameInputChange}
                 style={ errorData.nameErrorStatus !== "none" ? {borderColor : "#E63535"} : null }
@@ -34,7 +36,6 @@ const ParticipantForm = ({nowIndex,errorData,setParticipantData,participantDataA
             <input 
                 className = "email_input" 
                 type = "text" 
-                placeholder = "이메일" 
                 defaultValue={participantDataArray[nowIndex].email}
                 onChange={onEmailInputChange}
                 style={ errorData.emailErrorStatus !== "none" ? {borderColor : "#E63535"} : null }

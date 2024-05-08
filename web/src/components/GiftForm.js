@@ -21,11 +21,13 @@ const GiftForm = ({giftDataArray,errorData,setGiftData,nowIndex}) => {
     }
     return (
         <div className = "GiftForm">
-            <p className = "form_label gift_name">경품 이름</p>
+            <div className="form_start">
+                <p className = "form_label gift_name">경품 이름</p>
+                <p className = "form_indicator">경품 {nowIndex+1}</p>
+            </div>
             <input 
                 className = "gift_name" 
                 type = "text" 
-                placeholder = "경품 이름"
                 defaultValue={giftDataArray[nowIndex].giftName}
                 onChange={onGiftNameChange}      
                 style={ errorData.nameErrorStatus !== "none" ? {borderColor : "#E63535"} : null }

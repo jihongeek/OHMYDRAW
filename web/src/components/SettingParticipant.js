@@ -53,7 +53,7 @@ const SettingParticiant = ({moveToNextStep,moveToPreviousStep,drawData,setDrawDa
         moveToPreviousStep();
     }
     return (
-        <div className = "SettingParticipant">
+        <div className = "setting_block SettingParticipant">
             <p className="setting_label">추첨설정</p>
             <p className="step_label">참가인원 정보</p>
             <div className = "form_wrapper">
